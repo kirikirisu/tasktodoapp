@@ -3,10 +3,6 @@ import React from 'react';
 const List = ({
   todos,
   toggleTodo,
-  set,
-  all,
-  active,
-  completed,
 }) => {
   // console.log(todos);
 
@@ -27,9 +23,6 @@ const List = ({
       <ul>
         {listItems}
       </ul>
-      <button onClick={() => set(completed)}>完了</button>
-      <button onClick={() => set(all)}>全て</button>
-      <button onClick={() => set(active)}>未完了</button>
     </div>
   );
 }

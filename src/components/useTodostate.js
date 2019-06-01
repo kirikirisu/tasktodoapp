@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 
 let initialid = 0;
+let historyid = 0;
 
 const useTodostate = () => {
   const [todos, setTodos] = useState([]);
-  const [completed, setCompleted] = useState([]);
-  const [active, setActive] = useState([]);
+  const [historyelement, setHistoryelement] = useState([]);
 
   return {
     todos,
-    completed,
-    active,
     addTodo: todoText => {
       setTodos([
         ...todos,
         {
           // id: Date.now(),
           id: initialid++,
+          text: todoText,
+          completed: false,
+        }
+      ]);
+      setHistoryelement([
+        ...todos,
+        {
+          // id: Date.now(),
+          id: historyid++,
           text: todoText,
           completed: false,
         }
@@ -30,13 +37,28 @@ const useTodostate = () => {
           : todo
       )
       setTodos(toggled);
-      const active = todos.filter(t => t.completed === false)
-      setActive(active);
-      const completed = todos.filter(t => t.completed === true)
-      setCompleted(completed);
+      const toggler = todos.map(todo =>
+        (todo.id === id)
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+      setHistoryelement(toggler);
     },
-    set: element => {
-      setTodos(element);
+    searchActive: () => {
+      console.log(todos)
+      setTodos([]);
+      const active = historyelement.filter(t => t.completed === false)
+      console.log(active);
+      setTodos(active);
+    },
+    searchCompleted: () => {
+      setTodos([]);
+      const completed = historyelement.filter(t => t.completed === true)
+      setTodos(completed);
+    },
+    setAll: () => {
+      setTodos([]);
+      setTodos(historyelement);
     }
   };
 
