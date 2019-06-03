@@ -1,93 +1,109 @@
 import React, { useState } from 'react';
 import List from '../listComponent/list';
-import Input from '../inputComponent/input';
-import useTodostate from '../useTodostate';
-import Modal from 'react-modal';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+let id = 0;
 
-Modal.setAppElement('#root');
-
-const Main = () => {
-  const {
-    todos,
-    active,
-    completed,
-    addTodo,
-    toggleTodo,
-    setActive,
-    setCompleted,
-  } = useTodostate([]);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalMap, setModalMap] = useState([]);
-
-  const activeButton = () => {
-    setActive();
-    setModalMap([]);
-    setModalMap(active);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [],
+      completed: [],
+      active: [],
+      all: [],
+    };
   }
 
-  const completedButton = () => {
-    setCompleted();
-    setModalMap([]);
-    setModalMap(completed);
-  }
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  }
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  }
-
-  const renderProducts = (product) => {
-    return (
-      <li key={product.id}>{product.text}</li>
+  toggleTodo = (id) => {
+    const { todos } = this.state;
+    const toggled = todos.map(todo =>
+      (todo.id === id)
+        ? { ...todo, completed: !todo.completed }
+        : todo
     )
+    this.setState({ todos: [] });
+    this.setState({ todos: toggled });
+    // console.log(this.state.todos);
   }
 
-  console.log(active);
-  console.log(completed);
+  searchCompleted = () => {
+    const { todos } = this.state;
+    const completed = todos.filter(t => t.completed === true);
+    this.setState({ completed: [] });
+    this.setState({ completed: completed });
+  }
 
-  return (
-    <div>
-      <Input
-        saveTodo={todoText => {
-          const trimmedText = todoText.trim();
+  searchActive = () => {
+    const { todos } = this.state;
+    const active = todos.filter(t => t.completed === false);
+    this.setState({ active: [] });
+    this.setState({ active: active });
+  }
 
-          if (trimmedText.length > 0) {
-            addTodo(trimmedText);
-          }
-        }}
-      />
-      <List
-        todos={todos}
-        toggleTodo={toggleTodo}
-      />
-      <button onClick={() => activeButton()}>未完了</button>
-      <button onClick={() => completedButton()}>完了</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal()}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <button onClick={closeModal()}>Close</button>
-        {modalMap.map(product => renderProducts(product))}
-      </Modal>
-    </div>
-  )
+  setAll = () => {
+    const { todos } = this.state;
+    this.setState({ all: [] });
+    this.setState({ all: todos });
+  }
+
+  render() {
+
+    console.log(this.state.todos);
+    console.log(this.state.completed);
+    console.log(this.state.active);
+    console.log(this.state.all);
+
+    return (
+      <div>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+
+            const text = e.target.elements["title"]
+
+            this.setState(
+              {
+                todos: this.state.todos.concat({
+                  text: text.value,
+                  completed: false,
+                  id: id++,
+                })
+              },
+
+              () => {
+                text.value = "";
+              }
+            )
+          }}
+        >
+          <input
+            id="title"
+            placeholder="title"
+          />
+          <div>
+            <button type="submit">
+              追加
+            </button>
+          </div>
+        </form>
+        <div>
+          <ul>
+            {this.state.todos.map(todo => (
+              <List
+                id={todo.id}
+                completed={todo.completed}
+                text={todo.text}
+                toggleTodo={this.toggleTodo}
+              />
+            ))}
+          </ul>
+        </div>
+        <button onClick={this.searchCompleted}>完了</button>
+        <button onClick={this.searchActive}>未完了</button>
+        <button onClick={this.setAll}>全て</button>
+      </div>
+    );
+  }
 }
 
-export default Main;
+export default App;

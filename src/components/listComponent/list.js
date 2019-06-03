@@ -1,31 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const List = ({
-  todos,
-  toggleTodo,
-}) => {
-  // console.log(todos);
+class List extends Component {
+  render() {
+    const {
+      id,
+      text,
+      toggleTodo,
+      completed,
+    } = this.props;
 
-  const listItems = todos.map((todo) =>
-    <li
-      key={todo.id}
-      // onClick={() => console.log(todo.id)}
-      onClick={() => toggleTodo(todo.id)}
-      style={{
-        textDecoration: todo.completed ? 'line-through' : 'none'
-      }}
-    >
-      {todo.text}
-    </li>
-  );
-  return (
-    <div>
-      <ul>
-        {listItems}
-      </ul>
-    </div>
-  );
+    return (
+      <li
+        key={id}
+        onClick={() => toggleTodo(id)}
+        style={{
+          textDecoration: completed ? 'line-through' : 'none'
+        }}
+      >
+        {text}
+      </li>
+    );
+  }
 }
-
 
 export default List;
