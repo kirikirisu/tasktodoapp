@@ -1,30 +1,52 @@
 import React, { useState } from 'react';
 
-export default initialTodo => {
-  const [todos, setTodos] = useState(initialTodo);
-  const [allelement, setAllelement] = useState([]);
-  const [deletedelement, setDeletedelement] = useState([]);
-  const [activeelement, setActiveelement] = useState([]);
+let initialid = 0;
+
+const useTodostate = () => {
+  const [todos, setTodos] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [active, setActive] = useState([]);
 
   return {
     todos,
-    deletedelement,
-    allelement,
-    activeelement,
+    active,
+    completed,
     addTodo: todoText => {
-      setTodos([...todos, todoText]);
-      setAllelement([...allelement, todoText]);
+      setTodos([
+        ...todos,
+        {
+          id: initialid++,
+          text: todoText,
+          completed: false,
+        }
+      ]);
     },
-    deleteTodo: deleteIndex => {
-      const deletednewTodo = todos.filter((todo, index) => index !== deleteIndex);
-      setActiveelement(deletednewTodo);
-      setTodos(deletednewTodo);
-      const deleted = todos.filter((todo, index) => index === deleteIndex);
-      setDeletedelement([...deletedelement, deleted]);
+    toggleTodo: id => {
+      console.log(id);
+      const toggled = todos.map(todo =>
+        (todo.id === id)
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+      setTodos(toggled);
     },
-    setTodo: element => {
-      setTodos(element);
+    setActive: () => {
+      const active = todos.filter(t => t.completed === false)
+      // console.log(active);
+      setActive([]);
+      setActive(active);
     },
+    setCompleted: () => {
+      const completed = todos.filter(t => t.completed === true)
+      setCompleted([]);
+      setCompleted(completed);
+    },
+    /* setAll: () => {
+      setTodos([]);
+      setTodos(historyElement);
+    } */
   };
 
 };
+
+export default useTodostate;
