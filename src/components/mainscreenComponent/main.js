@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 import List from '../listComponent/list';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
 let id = 0;
+
+Modal.setAppElement('#root')
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +25,8 @@ class App extends React.Component {
       completed: [],
       active: [],
       all: [],
+      modalIsOpen: false,
+      modalElement: [],
     };
   }
 
@@ -31,6 +47,9 @@ class App extends React.Component {
     const completed = todos.filter(t => t.completed === true);
     this.setState({ completed: [] });
     this.setState({ completed: completed });
+    this.setState({ modalElement: [] });
+    this.setState({ modalElement: completed });
+    this.openModal();
   }
 
   searchActive = () => {
@@ -38,13 +57,36 @@ class App extends React.Component {
     const active = todos.filter(t => t.completed === false);
     this.setState({ active: [] });
     this.setState({ active: active });
+    this.setState({ modalElement: [] });
+    this.setState({ modalElement: active });
+    this.openModal();
   }
 
   setAll = () => {
     const { todos } = this.state;
     this.setState({ all: [] });
     this.setState({ all: todos });
+    this.setState({ modalElement: [] });
+    this.setState({ modalElement: todos });
+    this.openModal();
   }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
+
+  modalRenderProducts = (product) => {
+    return (
+      <li>
+        {product.text}
+      </li>
+    )
+  }
+
 
   render() {
 
@@ -98,9 +140,20 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <button onClick={this.searchCompleted}>完了</button>
-        <button onClick={this.searchActive}>未完了</button>
-        <button onClick={this.setAll}>全て</button>
+        <div>
+          <button onClick={this.searchCompleted}>完了</button>
+          <button onClick={this.searchActive}>未完了</button>
+          <button onClick={this.setAll}>全て</button>
+        </div>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <button onClick={this.closeModal}>Close</button>
+          {this.state.modalElement.map(product => this.modalRenderProducts(product))}
+        </Modal>
       </div>
     );
   }
