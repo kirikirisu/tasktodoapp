@@ -1,0 +1,230 @@
+.setting {
+  background: burlywood;
+  height: 100vh;
+  width: 100%;
+}
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.chatSpace {
+  width: 23%;
+  height: 100vh;
+  position: absolute;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 60px;
+}
+
+.input {
+  width: 300px;
+  height: 40px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin-right: 2px;
+}
+
+.add {
+  width: 60px;
+  height: 40px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #e03616;
+  border-radius: 3px;
+  background-color: #e03616;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.inputAndButton {
+  display: flex;
+  align-items: center;
+}
+
+.listContainer {
+  width: 50%;
+  height: 50%;
+  overflow: scroll;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.history {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  margin-right: 160px;
+}
+
+.showButton {
+  width: 48px;
+  height: 20px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #e03616;
+  border-radius: 3px;
+  background-color: #e03616;
+  color: #ffffff;
+  font-size: 6px;
+  margin-right: 2px;
+}
+
+.show {
+  font-size: 16px;
+  color: #ffffff;
+  margin-right: 4px;
+}
+
+.animationChatF {
+  animation-name: chatAnimeF;
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  transform: translate(0, 42vh);
+}
+
+.animationChatS {
+  animation-name: chatAnimeS;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  transform: translate(0, 42vh);
+}
+
+.animationChatT {
+  animation-name: chatAnimeT;
+  animation-duration: 12s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  transform: translate(0, 42vh);
+}
+
+.animationChatFF {
+  animation-name: chatAnimeFF;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes chatAnimeFF {
+  0% {
+    opacity: 0;
+    transform: translate(3%, 5vh);
+  }
+  90% {
+    opacity: 0;
+    transform: translate(3%, 5vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(3%, 4vh);
+  }
+}
+
+@keyframes chatAnimeF {
+  0% {
+    opacity: 0;
+    transform: translate(0, 42vh);
+  }
+  10% {
+    opacity: 0;
+    transform: translate(0, 40vh);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, 40vh);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 40vh);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, 40vh);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(0, 40vh);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 35vh);
+  }
+}
+
+@keyframes chatAnimeS {
+  0% {
+    opacity: 0;
+    transform: translate(0, 62vh);
+  }
+  10% {
+    opacity: 0;
+    transform: translate(0, 50vh);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, 50vh);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 50vh);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, 50vh);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(0, 50vh);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 45vh);
+  }
+}
+
+@keyframes chatAnimeT {
+  0% {
+    opacity: 0;
+    transform: translate(0, 74vh);
+  }
+  10% {
+    opacity: 0;
+    transform: translate(0, 62vh);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, 62vh);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 62vh);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, 62vh);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(0, 62vh);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 57vh);
+  }
+}

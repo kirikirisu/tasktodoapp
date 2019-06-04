@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class List extends Component {
-  render() {
-    const {
-      id,
-      text,
-      toggleTodo,
-      completed,
-    } = this.props;
-
-    return (
-      <li
-        key={id}
-        onClick={() => toggleTodo(id)}
-        style={{
-          textDecoration: completed ? 'line-through' : 'none'
-        }}
-      >
-        {text}
-      </li>
-    );
-  }
-}
+const List = ({
+  id,
+  text,
+  toggleTodo,
+  completed }) => (
+    <li
+      key={id}
+      onClick={() => toggleTodo(id)}
+      style={{
+        textDecoration: completed ? 'line-through' : 'none',
+        listStyle: 'none',
+        color: '#ffffff',
+        marginRight: '70px',
+        fontSize: '1.8rem',
+        textAlign: 'center',
+      }}
+    >
+      {text}
+    </li>
+  );
 
 export default List;
