@@ -1,5 +1,28 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# 技術課題のTODOアプリ
+## セットアップ方法
+
+任意のディレクトリに移動し
+
+```
+  git clone https://github.com/kirikirisu/tasktodoapp.git
+  
+  cd tasktodoapp
+  
+  npm i
+  
+  npm start
+```
+
+してください。
+
+## タスク5およびタスク6の説明
+
+もっともあったら嬉しいと思う機能は、追加したtodoをやるためのモチベーションを高める機能だと思いました。
+そして、下にスクロールするとモチベーションが上がりそうな名言を素早く見ることができる機能、ログイン時にザッカーバーグの名言を見ることができる機能、未完了のTODOを確認するとザッカーバーグに注意される機能をつけました。
+これらの機能を追加した理由は主に二つあり、まず一週間で自分が出来そうだと思ったからです。そして、個人開発でやってみたいと思っていたことをこの機会にやってみようと思ったからです。
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,4 +89,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# tasktodoapp
+
