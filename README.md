@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# 技術課題のTODOアプリ
+# TODOアプリ
 ## セットアップ方法
 
 任意のディレクトリに移動し
@@ -16,12 +16,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ```
 
 してください。
-
-## タスク5およびタスク6の説明
-
-もっともあったら嬉しいと思う機能は、追加したtodoをやるためのモチベーションを高める機能だと思いました。
-そして、下にスクロールするとモチベーションが上がりそうな名言を素早く見ることができる機能、ログイン時にザッカーバーグの名言を見ることができる機能、未完了のTODOを確認するとザッカーバーグに注意される機能をつけました。
-これらの機能を追加した理由は主に二つあり、まず一週間で自分が出来そうだと思ったからです。そして、個人開発でやってみたいと思っていたことをこの機会にやってみようと思ったからです。
 
 ## Available Scripts
 
